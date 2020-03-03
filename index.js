@@ -20,12 +20,13 @@ router.get('/api/get/post', (req, res, next) => {
 
 router.post('/api/post/post_to_db', (req, res, next) => {
   const values = [
-      req.body.title,
+      req.body.heading,
+      req.body.subheading,
       req.body.body,
-      req.body.uid,
-      req.body.username
+      req.body.user_id,
+      req.body.author
   ]
-  pool.query(`INSERT INTO posts(title, body, user_id, author, date_created) VALUES($1, $2, $3, $4, NOW() )`,
+  pool.query(`INSERT INTO posts(heading, subheading, body, user_id, author, date_created) VALUES($1, $2, $3, $4, $5, NOW() )`,
       values, (q_err, q_res) => {
         if(q_err) return next(q_err);
         res.json(q_res.rows)
@@ -33,12 +34,15 @@ router.post('/api/post/post_to_db', (req, res, next) => {
 })
 
 router.put('/api/put/post', (req, res, next) => {
-  const values = [ req.body.title,
-    req.body.body,
-    req.body.uid,
-    req.body.pid,
-    req.body.username]
-  pool.query(`UPDATE posts SET title= $1, body=$2, user_id=$3, author=$5, date_created=NOW() WHERE pid = $4`, values,
+  const values = [
+      req.body.heading,
+      req.body.subheading,
+      req.body.body,
+      req.body.user_id,
+      req.body.post_id,
+      req.body.author
+  ]
+  pool.query(`UPDATE posts SET heading= $1, subheading= $2, body=$3, user_id=$4, author=$6, date_created=NOW() WHERE pid = $5`, values,
       (q_err, q_res) => {
         console.log(q_res)
         console.log(q_err)
