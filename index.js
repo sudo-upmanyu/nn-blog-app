@@ -2,7 +2,7 @@ var express = require('express')
 var router = express.Router()
 var pool = require('./db.js')
 
-router.get('/api/get/allposts', (req, res, next ) => {
+router.get('/api/get/all_posts', (req, res, next ) => {
     pool.query(`SELECT * FROM posts ORDER BY date_created DESC`,
         (q_err, q_res) => {
             res.json(q_res.rows)
@@ -18,7 +18,7 @@ router.get('/api/get/post', (req, res, next) => {
 })
 
 
-router.post('/api/post/posttodb', (req, res, next) => {
+router.post('/api/post/post_to_db', (req, res, next) => {
   const values = [
       req.body.title,
       req.body.body,
