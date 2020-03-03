@@ -95,9 +95,9 @@ router.put('/api/put/likes', (req, res, next) => {
 
 
 router.post('/api/post/comment_to_db', (req, res, next) => {
-  const values = [ req.body.comment,
+  const values = [req.body.comment,
     req.body.user_id,
-    req.body.username,
+    req.body.author,
     req.body.post_id]
 
   pool.query(`INSERT INTO comments(comment, user_id, author, post_id, date_created)
@@ -118,11 +118,12 @@ router.get('/api/get/all_post_comments', (req, res, next) => {
 })
 
 router.post('/api/posts/user_profile_to_db', (req, res, next) => {
-  const values = [req.body.profile.nickname,
-    req.body.profile.email,
-    req.body.profile.email_verified]
-  pool.query(`INSERT INTO users(username, email, email_verified, date_created)
-              VALUES($1, $2, $3, NOW())
+  const values = [
+      req.body.username,
+      req.body.email
+  ]
+    pool.query(`INSERT INTO users(username, email, date_created)
+              VALUES($1, $2, NOW())
               ON CONFLICT DO NOTHING`, values,
       (q_err, q_res) => {
         res.json(q_res.rows)
