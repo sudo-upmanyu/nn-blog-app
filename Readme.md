@@ -18,7 +18,7 @@ This is a blog backend in express with the following endpoints:
 - `/api/get/all_posts` : Get all post from all users newest first
 - `/api/get/post?post_id=` : Get post by id
 - `/api/post/post_to_db` : Create a new post
-- `/api/put/post` : Edit a post by provding all the values
+- `/api/put/post` : Edit a post by providing all the values
 - `/api/delete/post_commets` : Deletes all comments associated with the post
 - `/api/delete/post?post_id=` : Deletes post by id
 - `/api/put/likes` : add the user id of the user who liked the post then we increase the likes count by 1, provide user id(uid) as well as post_id.
