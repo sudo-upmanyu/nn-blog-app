@@ -10,6 +10,8 @@ docker run --name postgres -e POSTGRES_USER="postgres" -e POSTGRES_PASSWORD="pos
 ```
 Database config is defined in `db.js` file, to set schema use `schema.sql` file.
 
+Install project's reqs, `npm install`
+
 Run this by using, `npm start` 
 
 This is a blog backend in express with the following endpoints:
